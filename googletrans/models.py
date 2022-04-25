@@ -39,7 +39,7 @@ class Translated(Base):
         origin,
         text,
         pronunciation,
-        parts: List[TranslatedPart] | None,
+        parts,
         extra_data=None,
         **kwargs
     ):
