@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from httpx import Response
 from typing import List
 
