@@ -1,31 +1,23 @@
-# googletrans-py
+# googletrans-fork
 
-This is a fork of the [googletrans](https://github.com/ssut/py-googletrans) which makes the original package compatible with the latest versions of `httpx`, `httpcore` and their dependencies. This compatibility makes it possible to use `httpx`'s newer versions than `0.13.3`.
+This is a fork of the [googletrans-py](https://github.com/ShivangKakkar/googletrans) which makes some fixes.
 
-The base is taken from the [feature/rpc](https://github.com/ssut/py-googletrans/tree/feature/rpc) branch of googletrans which was the last version, including pre-releases.
-
-Comparing with PyPI, the base uses [v4.0.0rc1](https://pypi.org/project/googletrans/4.0.0rc1/) which was the last version on pypi, including pre-releases.
-
-> **Note**: I have no intention to add features or to maintain this project. This is a temporary solution to a temporary a problem, hopefully.
-
-As the original project ended with version `4.0.0rc1` (pre-release), this fork's versioning starts from `4.0.0` (stable release).
+Fix can be found in this commit: [TypeError: unsupported operand type(s) for |: '_GenericAlias'](https://github.com/kt315ua/googletrans-fork/commit/6ed37997c799c9a4bc0de02a13995da6eaf835dd)
 
 ## Installation
 
 ### PyPI
 
-This project is available on [PyPI](https://pypi.org/project/googletrans-py) and can be installed using pip.
-
-```shell
-pip install googletrans-py
-```
+This project is not available on PyPI and doesn't provide support.
 
 ### Repository
 
-You can also install the project directly from this repository.
+You can also install the project from this repository.
 
 ```shell
-pip install git+https://github.com/StarkBotsIndustries/googletrans.git
+git clone https://github.com/kt315ua/googletrans-fork.git
+cd googletrans-fork
+python3 setup.py install
 ```
 
 ## Credits
@@ -33,3 +25,7 @@ pip install git+https://github.com/StarkBotsIndustries/googletrans.git
 Original Author - [Suhun Han](https://github.com/ssut)
 
 Original Repository - [googletrans](https://github.com/ssut/py-googletrans)
+
+Improves with fresh HTTPX support - [Shivang Kakkar](https://github.com/ShivangKakkar)
+
+Improved Repository with fresh HTTPX support - [Shivang Kakkar](https://github.com/ShivangKakkar/googletrans)
