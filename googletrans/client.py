@@ -163,31 +163,36 @@ class Translator:
                 raise ValueError('invalid destination language')
 
         origin = text
-        data, response = self._translate(text, dest, src)
+        fail = True;
+        while fail:
+            data, response = self._translate(text, dest, src)
 
-        token_found = False
-        square_bracket_counts = [0, 0]
-        resp = ''
-        for line in data.split('\n'):
-            token_found = token_found or f'"{RPC_ID}"' in line[:30]
-            if not token_found:
-                continue
+            token_found = False
+            square_bracket_counts = [0, 0]
+            resp = ''
+            for line in data.split('\n'):
+                token_found = token_found or f'"{RPC_ID}"' in line[:30]
+                if not token_found:
+                    continue
 
-            is_in_string = False
-            for index, char in enumerate(line):
-                if char == '\"' and line[max(0, index - 1)] != '\\':
-                    is_in_string = not is_in_string
-                if not is_in_string:
-                    if char == '[':
-                        square_bracket_counts[0] += 1
-                    elif char == ']':
-                        square_bracket_counts[1] += 1
+                is_in_string = False
+                for index, char in enumerate(line):
+                    if char == '\"' and line[max(0, index - 1)] != '\\':
+                        is_in_string = not is_in_string
+                    if not is_in_string:
+                        if char == '[':
+                            square_bracket_counts[0] += 1
+                        elif char == ']':
+                            square_bracket_counts[1] += 1
 
-            resp += line
-            if square_bracket_counts[0] == square_bracket_counts[1]:
-                break
+                resp += line
+                if square_bracket_counts[0] == square_bracket_counts[1]:
+                    break
 
-        data = json.loads(resp)
+            data = json.loads(resp)
+            if data[0][2] is not None:
+                fail = False
+
         parsed = json.loads(data[0][2])
         # not sure
         should_spacing = parsed[1][0][0][3]
