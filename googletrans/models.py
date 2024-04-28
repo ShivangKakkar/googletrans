@@ -1,6 +1,5 @@
 from httpx import Response
-from typing import List
-
+from typing import List, Union
 
 class Base:
     def __init__(self, response: Response = None):
@@ -39,7 +38,7 @@ class Translated(Base):
         origin,
         text,
         pronunciation,
-        parts: List[TranslatedPart] | None,
+        parts: Union[List[TranslatedPart], None] = None,
         extra_data=None,
         **kwargs
     ):
